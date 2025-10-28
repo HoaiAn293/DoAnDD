@@ -12,7 +12,7 @@ class AuthService {
         body: jsonEncode({'username': username, 'password': password}),
       );
 
-      if (res.statusCode == 200) return 'Đăng ký thành công';
+      if (res.statusCode == 200) return 'success';
       return jsonDecode(res.body)['msg'];
     } catch (e) {
       return 'Lỗi kết nối server';

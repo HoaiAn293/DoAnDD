@@ -1,0 +1,31 @@
+{
+  "users": [
+    {
+      "username": "Dat",
+      "password": "$2b$10$P.QYty1Pb4.1oxpDTk9XAezDYQ0E9Csd.3zzSFBaxM9CBCEsPjbvu",
+      "profile": {
+        "displayName": "Dat",
+        "avatarUrl": null,
+        "status": "Hello!"
+      },
+      "friends": [],
+      "blocked": [],
+      "pendingRequests": [
+        "Hong"
+      ]
+    },
+    {
+      "username": "Hong",
+      "password": "$2b$10$au6.DCrN8wPFZAkLrYAAWOhOOrjF7MhEqNOKtOe8CCFLwzELvkVmO",
+      "profile": {
+        "displayName": "Hong",
+        "avatarUrl": null,
+        "status": "Hello!"
+      },
+      "friends": [],
+      "blocked": [],
+      "pendingRequests": []
+    }
+  ],
+  "rooms": []
+}

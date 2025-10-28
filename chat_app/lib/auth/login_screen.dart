@@ -46,22 +46,19 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
   }
 
   void login() async {
-    if (loginUsername.text.isEmpty || loginPassword.text.isEmpty) {
-      _showSnackBar('Username và password không được để trống', isError: true);
-      return;
-    }
-
     setState(() => _isLoading = true);
-    final result = await AuthService().login(loginUsername.text, loginPassword.text);
+    final username = loginUsername.text.trim();
+    final password = loginPassword.text;
+    final res = await auth.login(username, password);
     setState(() => _isLoading = false);
-
-    if (result == 'success') {
+    if (res == 'success') {
+      // chuyển vào HomeScreen, thay thế route hiện tại
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => HomeScreen(username: loginUsername.text)),
+        MaterialPageRoute(builder: (_) => HomeScreen(username: username)),
       );
     } else {
-      _showSnackBar(result ?? 'Đăng nhập thất bại', isError: true);
+      _showSnackBar(res ?? 'Lỗi', isError: true);
     }
   }
 

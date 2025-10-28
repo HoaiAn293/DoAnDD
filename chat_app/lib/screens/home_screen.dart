@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../screens/chat_screen.dart';
+import 'profile_screen.dart';
+import 'friends_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final String username;
@@ -7,6 +9,7 @@ class HomeScreen extends StatefulWidget {
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
+  
 }
 
 class _HomeScreenState extends State<HomeScreen> {
@@ -202,30 +205,28 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F6FA),
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 1,
-        title: Row(
-          children: [
-            const CircleAvatar(
-              backgroundColor: Color(0xFF007AFF),
-              child: Icon(Icons.person, color: Colors.white),
-            ),
-            const SizedBox(width: 10),
-            Text(
-              'Xin chào, ${widget.username}',
-              style: const TextStyle(color: Colors.black87, fontSize: 18),
-            ),
-          ],
-        ),
+        title: const Text('Rooms'),
         actions: [
           IconButton(
+            icon: const Icon(Icons.people),
+            tooltip: 'Bạn bè',
             onPressed: () {
-              Navigator.pushReplacementNamed(context, '/login');
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => FriendsScreen(username: widget.username)),
+              );
             },
-            icon: const Icon(Icons.logout, color: Colors.grey),
-            tooltip: 'Đăng xuất',
+          ),
+          IconButton(
+            icon: const Icon(Icons.person),
+            tooltip: 'Profile',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => ProfileScreen(username: widget.username)),
+              );
+            },
           ),
         ],
       ),

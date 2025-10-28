@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class RoomService {
-  final String baseUrl = 'http://localhost:3000';
+  final String baseUrl = 'http://10.0.2.2:3000'; 
 
   Future<List<Map<String, dynamic>>> getRooms() async {
     final res = await http.get(Uri.parse('$baseUrl/rooms'));
@@ -15,10 +15,11 @@ class RoomService {
 
   Future<Map<String, dynamic>> createRoom(String name, String type) async {
     final res = await http.post(
-      Uri.parse('$baseUrl/create-room'),
+      Uri.parse('$baseUrl/rooms'), 
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({'name': name, 'type': type}),
     );
     return jsonDecode(res.body);
   }
 }
+
