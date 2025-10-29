@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../services/auth_service.dart';
 import '../screens/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStateMixin {
   final AuthService auth = AuthService();
-  final TextEditingController loginUsername = TextEditingController();
-  final TextEditingController loginPassword = TextEditingController();
-  final TextEditingController registerUsername = TextEditingController();
-  final TextEditingController registerPassword = TextEditingController();
-  final TextEditingController registerConfirmPassword = TextEditingController();
+  final loginUsername = TextEditingController();
+  final loginPassword = TextEditingController();
+  final registerUsername = TextEditingController();
+  final registerPassword = TextEditingController();
+  final registerConfirmPassword = TextEditingController();
 
+  bool _isLoginForm = true;
   bool _isLoading = false;
   bool _obscureLoginPassword = true;
   bool _obscureRegisterPassword = true;
   bool _obscureConfirmPassword = true;
-  bool _isLoginForm = true;
 
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
@@ -29,56 +32,60 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 400),
+      duration: const Duration(milliseconds: 400),
     );
-    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+    _fadeAnimation = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
     );
     _animationController.forward();
   }
 
-  void _toggleForm() {
-    setState(() {
-      _isLoginForm = !_isLoginForm;
-      _animationController.reset();
-      _animationController.forward();
-    });
-  }
-
-  void login() async {
-    setState(() => _isLoading = true);
+  Future<void> _login() async {
     final username = loginUsername.text.trim();
     final password = loginPassword.text;
+    if (username.isEmpty || password.isEmpty) {
+      _showSnackBar('Vui lòng nhập đầy đủ thông tin', isError: true);
+      return;
+    }
+
+    setState(() => _isLoading = true);
     final res = await auth.login(username, password);
     setState(() => _isLoading = false);
+
     if (res == 'success') {
-      // chuyển vào HomeScreen, thay thế route hiện tại
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('username', username);
+
+      if (!mounted) return;
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (_) => HomeScreen(username: username)),
       );
     } else {
-      _showSnackBar(res ?? 'Lỗi', isError: true);
+      _showSnackBar(res ?? 'Đăng nhập thất bại', isError: true);
     }
   }
 
-  void register() async {
-    if (registerUsername.text.isEmpty || registerPassword.text.isEmpty || registerConfirmPassword.text.isEmpty) {
+  Future<void> _register() async {
+    final user = registerUsername.text.trim();
+    final pass = registerPassword.text;
+    final confirm = registerConfirmPassword.text;
+
+    if (user.isEmpty || pass.isEmpty || confirm.isEmpty) {
       _showSnackBar('Vui lòng điền đầy đủ thông tin', isError: true);
       return;
     }
-
-    if (registerPassword.text != registerConfirmPassword.text) {
+    if (pass != confirm) {
       _showSnackBar('Mật khẩu xác nhận không khớp', isError: true);
       return;
     }
 
     setState(() => _isLoading = true);
-    final result = await AuthService().register(registerUsername.text, registerPassword.text);
+    final res = await auth.register(user, pass);
     setState(() => _isLoading = false);
 
-    if (result?.contains('thành công') == true) {
-      _showSnackBar(result!, isError: false);
+    if (res?.contains('thành công') == true) {
+      _showSnackBar('Đăng ký thành công! Hãy đăng nhập.', isError: false);
       setState(() {
         _isLoginForm = true;
         registerUsername.clear();
@@ -86,10 +93,9 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
         registerConfirmPassword.clear();
       });
     } else {
-      _showSnackBar(result ?? 'Đăng ký thất bại', isError: true);
+      _showSnackBar(res ?? 'Đăng ký thất bại', isError: true);
     }
   }
-
 
   void _showSnackBar(String message, {required bool isError}) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -100,31 +106,35 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
               isError ? Icons.error_outline : Icons.check_circle_outline,
               color: Colors.white,
             ),
-            SizedBox(width: 12),
+            const SizedBox(width: 12),
             Expanded(child: Text(message)),
           ],
         ),
-        backgroundColor: isError ? Color(0xFFE74C3C) : Color(0xFF27AE60),
+        backgroundColor: isError ? const Color(0xFFE74C3C) : const Color(0xFF27AE60),
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        margin: EdgeInsets.all(16),
+        margin: const EdgeInsets.all(16),
       ),
     );
+  }
+
+  void _toggleForm() {
+    setState(() {
+      _isLoginForm = !_isLoginForm;
+      _animationController.reset();
+      _animationController.forward();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [
-              Color(0xFF1A237E),
-              Color(0xFF283593),
-              Color(0xFF3949AB),
-            ],
+            colors: [Color(0xFF1A237E), Color(0xFF283593), Color(0xFF3949AB)],
           ),
         ),
         child: SafeArea(
@@ -136,9 +146,8 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // Logo với hiệu ứng sang trọng
                     Container(
-                      padding: EdgeInsets.all(24),
+                      padding: const EdgeInsets.all(24),
                       decoration: BoxDecoration(
                         color: Colors.white.withOpacity(0.15),
                         shape: BoxShape.circle,
@@ -146,29 +155,23 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                           BoxShadow(
                             color: Colors.black.withOpacity(0.2),
                             blurRadius: 20,
-                            offset: Offset(0, 10),
+                            offset: const Offset(0, 10),
                           ),
                         ],
                       ),
-                      child: Icon(
-                        Icons.forum_rounded,
-                        size: 70,
-                        color: Colors.white,
-                      ),
+                      child: const Icon(Icons.forum_rounded, size: 70, color: Colors.white),
                     ),
-                    SizedBox(height: 30),
-
-                    // Tiêu đề
+                    const SizedBox(height: 30),
                     Text(
-                      _isLoginForm ? 'Chào Mừng Trở Lại' : 'Tạo Tài Khoản',
-                      style: TextStyle(
+                      _isLoginForm ? 'Chào mừng trở lại' : 'Tạo tài khoản',
+                      style: const TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.w700,
                         color: Colors.white,
                         letterSpacing: 0.5,
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
                       _isLoginForm
                           ? 'Đăng nhập để tiếp tục trải nghiệm'
@@ -176,12 +179,9 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                       style: TextStyle(
                         fontSize: 15,
                         color: Colors.white.withOpacity(0.85),
-                        letterSpacing: 0.3,
                       ),
                     ),
-                    SizedBox(height: 40),
-
-                    // Form card
+                    const SizedBox(height: 40),
                     Container(
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -190,7 +190,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                           BoxShadow(
                             color: Colors.black.withOpacity(0.1),
                             blurRadius: 30,
-                            offset: Offset(0, 15),
+                            offset: const Offset(0, 15),
                           ),
                         ],
                       ),
@@ -199,14 +199,9 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                         child: _isLoginForm ? _buildLoginForm() : _buildRegisterForm(),
                       ),
                     ),
-                    SizedBox(height: 24),
-
-                    // Toggle button
+                    const SizedBox(height: 24),
                     TextButton(
                       onPressed: _toggleForm,
-                      style: TextButton.styleFrom(
-                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                      ),
                       child: RichText(
                         text: TextSpan(
                           style: TextStyle(
@@ -221,7 +216,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                             ),
                             TextSpan(
                               text: _isLoginForm ? 'Đăng ký ngay' : 'Đăng nhập',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                                 decoration: TextDecoration.underline,
@@ -249,7 +244,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
           label: 'Username',
           icon: Icons.person_outline_rounded,
         ),
-        SizedBox(height: 18),
+        const SizedBox(height: 18),
         _buildTextField(
           controller: loginPassword,
           label: 'Password',
@@ -260,11 +255,8 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
             setState(() => _obscureLoginPassword = !_obscureLoginPassword);
           },
         ),
-        SizedBox(height: 28),
-        _buildActionButton(
-          label: 'Đăng Nhập',
-          onPressed: login,
-        ),
+        const SizedBox(height: 28),
+        _buildActionButton(label: 'Đăng nhập', onPressed: _login),
       ],
     );
   }
@@ -277,7 +269,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
           label: 'Username',
           icon: Icons.person_outline_rounded,
         ),
-        SizedBox(height: 18),
+        const SizedBox(height: 18),
         _buildTextField(
           controller: registerPassword,
           label: 'Password',
@@ -288,7 +280,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
             setState(() => _obscureRegisterPassword = !_obscureRegisterPassword);
           },
         ),
-        SizedBox(height: 18),
+        const SizedBox(height: 18),
         _buildTextField(
           controller: registerConfirmPassword,
           label: 'Xác nhận Password',
@@ -299,11 +291,8 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
             setState(() => _obscureConfirmPassword = !_obscureConfirmPassword);
           },
         ),
-        SizedBox(height: 28),
-        _buildActionButton(
-          label: 'Đăng Ký',
-          onPressed: register,
-        ),
+        const SizedBox(height: 28),
+        _buildActionButton(label: 'Đăng ký', onPressed: _register),
       ],
     );
   }
@@ -319,39 +308,34 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
     return TextField(
       controller: controller,
       obscureText: isPassword && (obscureText ?? true),
-      style: TextStyle(fontSize: 15, color: Color(0xFF2C3E50)),
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: TextStyle(color: Color(0xFF7F8C8D), fontSize: 14),
-        prefixIcon: Icon(icon, color: Color(0xFF3949AB), size: 22),
+        labelStyle: const TextStyle(color: Color(0xFF7F8C8D), fontSize: 14),
+        prefixIcon: Icon(icon, color: const Color(0xFF3949AB)),
         suffixIcon: isPassword
             ? IconButton(
           icon: Icon(
             (obscureText ?? true)
                 ? Icons.visibility_outlined
                 : Icons.visibility_off_outlined,
-            color: Color(0xFF7F8C8D),
-            size: 22,
+            color: const Color(0xFF7F8C8D),
           ),
           onPressed: onToggleVisibility,
         )
             : null,
         filled: true,
-        fillColor: Color(0xFFF5F6FA),
+        fillColor: const Color(0xFFF5F6FA),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
           borderSide: BorderSide.none,
         ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(14),
-          borderSide: BorderSide(color: Color(0xFFECF0F1), width: 1),
-        ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
-          borderSide: BorderSide(color: Color(0xFF3949AB), width: 2),
+          borderSide: const BorderSide(color: Color(0xFF3949AB), width: 2),
         ),
-        contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       ),
+      style: const TextStyle(fontSize: 15, color: Color(0xFF2C3E50)),
     );
   }
 
@@ -365,16 +349,11 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
       child: ElevatedButton(
         onPressed: _isLoading ? null : onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: Color(0xFF3949AB),
-          foregroundColor: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(14),
-          ),
-          elevation: 0,
-          shadowColor: Color(0xFF3949AB).withOpacity(0.3),
+          backgroundColor: const Color(0xFF3949AB),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
         ),
         child: _isLoading
-            ? SizedBox(
+            ? const SizedBox(
           height: 22,
           width: 22,
           child: CircularProgressIndicator(
@@ -382,14 +361,8 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
             strokeWidth: 2.5,
           ),
         )
-            : Text(
-          label,
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            letterSpacing: 0.5,
-          ),
-        ),
+            : Text(label,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
       ),
     );
   }

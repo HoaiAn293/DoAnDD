@@ -1,0 +1,783 @@
+{
+  "users": [
+    {
+      "username": "Dat",
+      "password": "$2b$10$P.QYty1Pb4.1oxpDTk9XAezDYQ0E9Csd.3zzSFBaxM9CBCEsPjbvu",
+      "profile": {
+        "displayName": "Dat",
+        "avatarUrl": null,
+        "status": "Hello!"
+      },
+      "friends": [],
+      "blocked": [],
+      "pendingRequests": [
+        "Hong"
+      ]
+    },
+    {
+      "username": "Hong",
+      "password": "$2b$10$au6.DCrN8wPFZAkLrYAAWOhOOrjF7MhEqNOKtOe8CCFLwzELvkVmO",
+      "profile": {
+        "displayName": "Hong",
+        "avatarUrl": null,
+        "status": "Hello!"
+      },
+      "friends": [],
+      "blocked": [],
+      "pendingRequests": []
+    },
+    {
+      "username": "Hoai An",
+      "password": "$2b$10$h5w/SXniUhL4U4yqvCOZ2uKuZYiHlzJtoI.spMeSzKhra.uMBpdtS",
+      "profile": {
+        "displayName": "Hoai An",
+        "avatarUrl": null,
+        "status": "Hello!"
+      },
+      "friends": [
+        "Dat12"
+      ],
+      "blocked": [
+        "Dat123"
+      ],
+      "pendingRequests": []
+    },
+    {
+      "username": "Dat123",
+      "password": "$2b$10$LfkzHTe3DUfzcFNgFYokQut0aC7mpLR/nts3j0Zuhw7c88387vtXm",
+      "profile": {
+        "displayName": "Dat123",
+        "avatarUrl": null,
+        "status": "Hello!"
+      },
+      "friends": [],
+      "blocked": [],
+      "pendingRequests": [
+        "Hoai An"
+      ]
+    },
+    {
+      "username": "Dat12",
+      "password": "$2b$10$DlWRX5N/0TwIkkV5NKOp.eFiRTgF14ZBUOu.5vgva/A7YMC.qEPvW",
+      "profile": {
+        "displayName": "Dat12",
+        "avatarUrl": null,
+        "status": "Hello!"
+      },
+      "friends": [
+        "Hoai An"
+      ],
+      "blocked": [],
+      "pendingRequests": []
+    }
+  ],
+  "rooms": [
+    {
+      "id": "1761670336088",
+      "name": "Xin chao",
+      "type": "public",
+      "passwordHash": null,
+      "creator": "Hoai An"
+    },
+    {
+      "id": "1761670344433",
+      "name": "hihi",
+      "type": "public",
+      "passwordHash": null,
+      "creator": "Hoai An"
+    },
+    {
+      "id": "1761705355935",
+      "name": "HIi",
+      "type": "private",
+      "passwordHash": "$2b$10$jYPsHV3IeIBno1QdRlWBb.fVauvC9aRlTKJgUv1Tudf7FwPBQUopS",
+      "creator": "Hoai An"
+    },
+    {
+      "id": "1761706057872",
+      "name": "Vao di",
+      "type": "public",
+      "passwordHash": null,
+      "creator": "Hoai An"
+    },
+    {
+      "id": "1761714264495",
+      "name": "phong an",
+      "type": "private",
+      "passwordHash": "$2b$10$XPFFfBGn2vnLsyCqGRRcn.5gLJkWsq.hyCLkpHtldbe1uCDJoliiC",
+      "creator": "Hoai An"
+    },
+    {
+      "id": "1761715517846",
+      "name": "Phong moi",
+      "type": "public",
+      "passwordHash": null,
+      "creator": "Hoai An"
+    },
+    {
+      "id": "1761716950353",
+      "name": "Vao choi",
+      "type": "public",
+      "passwordHash": null,
+      "creator": "Dat12"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1761705407755,
+      "groupId": "1761670336088",
+      "username": "Dat12",
+      "message": "hi",
+      "image": null,
+      "time": "2025-10-29T02:36:47.755Z"
+    },
+    {
+      "id": 1761705412162,
+      "groupId": "1761670336088",
+      "username": "Hoai An",
+      "message": "hello",
+      "image": null,
+      "time": "2025-10-29T02:36:52.162Z"
+    },
+    {
+      "id": 1761705422122,
+      "groupId": "1761670336088",
+      "username": "Dat12",
+      "message": "sdfdsfsdf",
+      "image": null,
+      "time": "2025-10-29T02:37:02.122Z"
+    },
+    {
+      "id": 1761705689500,
+      "groupId": "1761670336088",
+      "username": "Hoai An",
+      "message": "hii",
+      "image": null,
+      "time": "2025-10-29T02:41:29.500Z"
+    },
+    {
+      "id": 1761705691283,
+      "groupId": "1761670336088",
+      "username": "Dat12",
+      "message": "hii",
+      "image": null,
+      "time": "2025-10-29T02:41:31.283Z"
+    },
+    {
+      "id": 1761705708080,
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "dasdqweasd",
+      "image": null,
+      "time": "2025-10-29T02:41:48.080Z"
+    },
+    {
+      "id": 1761705715364,
+      "groupId": "1761670344433",
+      "username": "Dat12",
+      "message": "dasdasdqweqwasd",
+      "image": null,
+      "time": "2025-10-29T02:41:55.364Z"
+    },
+    {
+      "id": 1761705725487,
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "xichafahao ban",
+      "image": null,
+      "time": "2025-10-29T02:42:05.487Z"
+    },
+    {
+      "id": 1761705734466,
+      "groupId": "1761670344433",
+      "username": "Dat12",
+      "message": "ban khoe khong",
+      "image": null,
+      "time": "2025-10-29T02:42:14.466Z"
+    },
+    {
+      "id": 1761705742625,
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "toi khoe",
+      "image": null,
+      "time": "2025-10-29T02:42:22.625Z"
+    },
+    {
+      "id": 1761705753086,
+      "groupId": "1761670344433",
+      "username": "Dat12",
+      "message": "ok bn nhe",
+      "image": null,
+      "time": "2025-10-29T02:42:33.086Z"
+    },
+    {
+      "id": 1761706109854,
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "hi",
+      "image": null,
+      "time": "2025-10-29T02:48:29.854Z"
+    },
+    {
+      "id": 1761706117089,
+      "groupId": "1761670344433",
+      "username": "Dat12",
+      "message": "xin chao ban",
+      "image": null,
+      "time": "2025-10-29T02:48:37.089Z"
+    },
+    {
+      "id": 1761706214842,
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "hello",
+      "image": null,
+      "time": "2025-10-29T02:50:14.842Z"
+    },
+    {
+      "id": 1761706250916,
+      "groupId": "1761670344433",
+      "username": "Dat12",
+      "message": "xin chao",
+      "image": null,
+      "time": "2025-10-29T02:50:50.916Z"
+    },
+    {
+      "id": 1761706255237,
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "hiiii",
+      "image": null,
+      "time": "2025-10-29T02:50:55.237Z"
+    },
+    {
+      "id": 1761706263553,
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "dasasd",
+      "image": null,
+      "time": "2025-10-29T02:51:03.553Z"
+    },
+    {
+      "id": 1761706266033,
+      "groupId": "1761670344433",
+      "username": "Dat12",
+      "message": "dasdasdasd",
+      "image": null,
+      "time": "2025-10-29T02:51:06.033Z"
+    },
+    {
+      "id": 1761706269536,
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "sdasd",
+      "image": null,
+      "time": "2025-10-29T02:51:09.536Z"
+    },
+    {
+      "id": 1761706969068,
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "hiii",
+      "image": null,
+      "time": "2025-10-29T03:02:49.068Z"
+    },
+    {
+      "id": 1761706974867,
+      "groupId": "1761670344433",
+      "username": "Dat12",
+      "message": "hello",
+      "image": null,
+      "time": "2025-10-29T03:02:54.867Z"
+    },
+    {
+      "id": 1761707054063,
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "hii",
+      "image": null,
+      "time": "2025-10-29T03:04:14.063Z"
+    },
+    {
+      "id": 1761707060895,
+      "groupId": "1761670344433",
+      "username": "Dat12",
+      "message": "xin cho nha",
+      "image": null,
+      "time": "2025-10-29T03:04:20.895Z"
+    },
+    {
+      "id": 1761707078231,
+      "groupId": "1761670336088",
+      "username": "Dat12",
+      "message": "hello",
+      "image": null,
+      "time": "2025-10-29T03:04:38.231Z"
+    },
+    {
+      "id": 1761707081474,
+      "groupId": "1761670336088",
+      "username": "Hoai An",
+      "message": "hello",
+      "image": null,
+      "time": "2025-10-29T03:04:41.474Z"
+    },
+    {
+      "id": 1761707129237,
+      "groupId": "1761670336088",
+      "username": "Hoai An",
+      "message": "hello",
+      "image": null,
+      "time": "2025-10-29T03:05:29.237Z"
+    },
+    {
+      "id": 1761707134833,
+      "groupId": "1761670336088",
+      "username": "Dat12",
+      "message": "ok bn",
+      "image": null,
+      "time": "2025-10-29T03:05:34.833Z"
+    },
+    {
+      "id": 1761707622065,
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "hello",
+      "image": null,
+      "time": "2025-10-29T03:13:42.065Z"
+    },
+    {
+      "id": 1761707631099,
+      "groupId": "1761670344433",
+      "username": "Dat12",
+      "message": "hhii",
+      "image": null,
+      "time": "2025-10-29T03:13:51.099Z"
+    },
+    {
+      "id": 1761707635633,
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "xin chao",
+      "image": null,
+      "time": "2025-10-29T03:13:55.633Z"
+    },
+    {
+      "id": 1761707646893,
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "hello",
+      "image": null,
+      "time": "2025-10-29T03:14:06.893Z"
+    },
+    {
+      "id": 1761707652699,
+      "groupId": "1761670344433",
+      "username": "Dat12",
+      "message": "chao cau",
+      "image": null,
+      "time": "2025-10-29T03:14:12.699Z"
+    },
+    {
+      "id": 1761707973803,
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "xin chao",
+      "image": null,
+      "time": "2025-10-29T03:19:33.803Z"
+    },
+    {
+      "id": 1761707982453,
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "xin chao",
+      "image": null,
+      "time": "2025-10-29T03:19:42.453Z"
+    },
+    {
+      "id": 1761707991014,
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "hello",
+      "image": null,
+      "time": "2025-10-29T03:19:51.014Z"
+    },
+    {
+      "id": 1761708000286,
+      "groupId": "1761670344433",
+      "username": "Dat12",
+      "message": "bn c khoe khong?",
+      "image": null,
+      "time": "2025-10-29T03:20:00.286Z"
+    },
+    {
+      "id": "1761708557041",
+      "groupId": "1761670336088",
+      "username": "Hoai An",
+      "message": "chao ban",
+      "image": null,
+      "time": "2025-10-29T10:29:16.479918"
+    },
+    {
+      "id": "1761708570193",
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "toi khoe",
+      "image": null,
+      "time": "2025-10-29T10:29:29.632417"
+    },
+    {
+      "id": "1761708618748",
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "ok bn n",
+      "image": null,
+      "time": "2025-10-29T10:30:18.187597"
+    },
+    {
+      "id": "1761708623077",
+      "groupId": "1761670344433",
+      "username": "Dat12",
+      "message": "hi hi",
+      "image": null,
+      "time": "2025-10-29T10:30:22.906683"
+    },
+    {
+      "id": "1761709184039",
+      "groupId": "1761670344433",
+      "username": "Dat12",
+      "message": "Xin  chao ban",
+      "image": null,
+      "time": "2025-10-29T10:39:43.866544"
+    },
+    {
+      "id": "1761709189490",
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "hiii",
+      "image": null,
+      "time": "2025-10-29T10:39:48.925621"
+    },
+    {
+      "id": "1761709201890",
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "bn khoe khong",
+      "image": null,
+      "time": "2025-10-29T10:40:01.321577"
+    },
+    {
+      "id": "1761709206756",
+      "groupId": "1761670344433",
+      "username": "Dat12",
+      "message": "helllp",
+      "image": null,
+      "time": "2025-10-29T10:40:06.585723"
+    },
+    {
+      "id": "1761709219703",
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "",
+      "image": "{\"msg\":\"success\",\"url\":\"http://localhost:3000/uploads/1761709219524-113358ca-31de-4f67-86f2-90aeaf1adb9d5295540364204525017.jpg\"}",
+      "time": "2025-10-29T10:40:19.134997"
+    },
+    {
+      "id": "1761712917437",
+      "groupId": "1761670336088",
+      "username": "Hoai An",
+      "message": "hello",
+      "image": null,
+      "time": "2025-10-29T11:41:56.841602"
+    },
+    {
+      "id": "1761712920500",
+      "groupId": "1761670336088",
+      "username": "Dat12",
+      "message": "hi",
+      "image": null,
+      "time": "2025-10-29T11:42:00.329073"
+    },
+    {
+      "id": "1761712928707",
+      "groupId": "1761670336088",
+      "username": "Hoai An",
+      "message": "bn co khoe khong?",
+      "image": null,
+      "time": "2025-10-29T11:42:08.112001"
+    },
+    {
+      "id": "1761714189005",
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "",
+      "image": "http://localhost:3000/uploads/1761714188929-3ff57c12-2c22-4175-90f8-2ab4b9d1ee151158000203861035357.jpg",
+      "time": "2025-10-29T12:03:08.763768"
+    },
+    {
+      "id": "1761714235370",
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "hello bn",
+      "image": null,
+      "time": "2025-10-29T12:03:55.126925"
+    },
+    {
+      "id": "1761714240997",
+      "groupId": "1761670344433",
+      "username": "Dat12",
+      "message": "hi xin chao",
+      "image": null,
+      "time": "2025-10-29T12:04:00.891127"
+    },
+    {
+      "id": "1761714538758",
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "",
+      "image": "http://localhost:3000/uploads/1761714538708-37.jpg",
+      "time": "2025-10-29T12:08:58.519108"
+    },
+    {
+      "id": "1761714619067",
+      "groupId": "1761670336088",
+      "username": "Hoai An",
+      "message": "",
+      "image": "http://localhost:3000/uploads/1761714619037-36.jpg",
+      "time": "2025-10-29T12:10:18.828018"
+    },
+    {
+      "id": "1761714664808",
+      "groupId": "1761670336088",
+      "username": "Hoai An",
+      "message": "",
+      "image": "http://localhost:3000/uploads/1761714664777-37.jpg",
+      "time": "2025-10-29T12:11:04.570072"
+    },
+    {
+      "id": "1761714826251",
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "",
+      "image": "http://localhost:3000/uploads/1761714826178-37.jpg",
+      "time": "2025-10-29T12:13:46.012430"
+    },
+    {
+      "id": "1761714903001",
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "bi loi anh roi",
+      "image": null,
+      "time": "2025-10-29T12:15:02.761908"
+    },
+    {
+      "id": "1761714910010",
+      "groupId": "1761670344433",
+      "username": "Dat12",
+      "message": "nhu vay a?",
+      "image": null,
+      "time": "2025-10-29T12:15:09.906453"
+    },
+    {
+      "id": "1761714950542",
+      "groupId": "1761670336088",
+      "username": "Hoai An",
+      "message": "",
+      "image": "http://localhost:3000/uploads/1761714950486-37.jpg",
+      "time": "2025-10-29T12:15:50.302794"
+    },
+    {
+      "id": "1761715017838",
+      "groupId": "1761670336088",
+      "username": "Hoai An",
+      "message": "",
+      "image": "http://localhost:3000/uploads/1761715017780-36.jpg",
+      "time": "2025-10-29T12:16:57.598689"
+    },
+    {
+      "id": "1761715117513",
+      "groupId": "1761670336088",
+      "username": "Hoai An",
+      "message": "",
+      "image": "http://localhost:3000/uploads/1761715117436-37.jpg",
+      "time": "2025-10-29T12:18:37.273490"
+    },
+    {
+      "id": "1761715243307",
+      "groupId": "1761670336088",
+      "username": "Hoai An",
+      "message": "",
+      "image": "http://localhost:3000/uploads/1761715243217-37.jpg",
+      "time": "2025-10-29T12:20:43.068940"
+    },
+    {
+      "id": "1761715870224",
+      "groupId": "1761670336088",
+      "username": "Hoai An",
+      "message": "",
+      "image": "http://10.0.2.2:3000:3000/uploads/1761715870075-c5f1b1f1-937c-44c5-87ae-568e1fdb08796176019866544468357.jpg",
+      "time": "2025-10-29T12:31:09.983802"
+    },
+    {
+      "id": "1761716509832",
+      "groupId": "1761670336088",
+      "username": "Hoai An",
+      "message": "",
+      "image": "http://10.0.2.2:3000/uploads/1761716509757-36.jpg",
+      "time": "2025-10-29T12:41:49.593645"
+    },
+    {
+      "id": "1761716532753",
+      "groupId": "1761670336088",
+      "username": "Hoai An",
+      "message": "hello",
+      "image": null,
+      "time": "2025-10-29T12:42:12.513061"
+    },
+    {
+      "id": "1761716544599",
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "",
+      "image": "http://10.0.2.2:3000/uploads/1761716544483-37.jpg",
+      "time": "2025-10-29T12:42:24.349993"
+    },
+    {
+      "id": "1761716559908",
+      "groupId": "1761670344433",
+      "username": "Dat12",
+      "message": "quao anh dep qua",
+      "image": null,
+      "time": "2025-10-29T12:42:39.797115"
+    },
+    {
+      "id": "1761716565779",
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "hihi",
+      "image": null,
+      "time": "2025-10-29T12:42:45.539550"
+    },
+    {
+      "id": "1761717068389",
+      "groupId": "1761706057872",
+      "username": "Hoai An",
+      "message": "Hi Dat",
+      "image": null,
+      "time": "2025-10-29T12:51:08.147456"
+    },
+    {
+      "id": "1761717076764",
+      "groupId": "1761706057872",
+      "username": "Dat12",
+      "message": "hello",
+      "image": null,
+      "time": "2025-10-29T12:51:16.659342"
+    },
+    {
+      "id": "1761717084504",
+      "groupId": "1761706057872",
+      "username": "Hoai An",
+      "message": "Cau khoe khong?",
+      "image": null,
+      "time": "2025-10-29T12:51:24.264213"
+    },
+    {
+      "id": "1761717091364",
+      "groupId": "1761706057872",
+      "username": "Dat12",
+      "message": "Tat nhien roi",
+      "image": null,
+      "time": "2025-10-29T12:51:31.255834"
+    },
+    {
+      "id": "1761717098604",
+      "groupId": "1761706057872",
+      "username": "Hoai An",
+      "message": "",
+      "image": "http://192.168.1.249:3000/uploads/1761717098549-37.jpg",
+      "time": "2025-10-29T12:51:38.365329"
+    },
+    {
+      "id": "1761717114041",
+      "groupId": "1761706057872",
+      "username": "Hoai An",
+      "message": "Canh dep chu?",
+      "image": null,
+      "time": "2025-10-29T12:51:53.800510"
+    },
+    {
+      "id": "1761717146916",
+      "groupId": "1761706057872",
+      "username": "Dat12",
+      "message": "Qua dep😄😄",
+      "image": null,
+      "time": "2025-10-29T12:52:26.807742"
+    },
+    {
+      "id": "1761717176713",
+      "groupId": "1761706057872",
+      "username": "Hoai An",
+      "message": "ok",
+      "image": null,
+      "time": "2025-10-29T12:52:56.473503"
+    },
+    {
+      "id": "1761717586617",
+      "groupId": "1761670336088",
+      "username": "Hoai An",
+      "message": "hello cau",
+      "image": null,
+      "time": "2025-10-29T12:59:46.376611"
+    },
+    {
+      "id": "1761717591192",
+      "groupId": "1761670336088",
+      "username": "Dat12",
+      "message": "hiii",
+      "image": null,
+      "time": "2025-10-29T12:59:51.085253"
+    },
+    {
+      "id": "1761718368332",
+      "groupId": "1761706057872",
+      "username": "Hoai An",
+      "message": "",
+      "image": "http://192.168.1.249:3000/uploads/1761718368165-37.jpg",
+      "time": "2025-10-29T13:12:48.092701"
+    },
+    {
+      "id": "1761718856625",
+      "groupId": "1761670336088",
+      "username": "Hoai An",
+      "message": "xin chao ban",
+      "image": null,
+      "time": "2025-10-29T13:20:56.387528"
+    },
+    {
+      "id": "1761718883540",
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "Hello",
+      "image": null,
+      "time": "2025-10-29T13:21:23.303805"
+    },
+    {
+      "id": "1761718890950",
+      "groupId": "1761670344433",
+      "username": "Dat12",
+      "message": "chao bn nhe",
+      "image": null,
+      "time": "2025-10-29T13:21:30.846614"
+    },
+    {
+      "id": "1761718900266",
+      "groupId": "1761670344433",
+      "username": "Hoai An",
+      "message": "",
+      "image": "http://192.168.1.249:3000/uploads/1761718900140-36.jpg",
+      "time": "2025-10-29T13:21:40.024195"
+    }
+  ]
+}

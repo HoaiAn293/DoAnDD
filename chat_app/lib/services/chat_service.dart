@@ -1,22 +1,37 @@
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class ChatService {
-  IO.Socket socket = IO.io(
-    'http://10.0.2.2:3000',
-    IO.OptionBuilder().setTransports(['websocket']).enableAutoConnect().build(),
-  );
+  late IO.Socket socket;
+
+  ChatService(String url) {
+    socket = IO.io(
+      url,
+      IO.OptionBuilder()
+          .setTransports(['websocket'])
+          .enableAutoConnect()
+          .build(),
+    );
+  }
 
   void connect() => socket.connect();
 
-  void joinGroup(String groupId, String username) =>
+  void disconnect() => socket.disconnect();
+
+  void joinGroup(String groupId, String username) {
     socket.emit('joinGroup', {'groupId': groupId, 'username': username});
+  }
+
+  void leaveGroup(String groupId, String username) {
+    socket.emit('leaveGroup', {'groupId': groupId, 'username': username});
+  }
 
   void sendMessage(String groupId, String username, String message, [String? imageUrl]) {
     final payload = {
       'groupId': groupId,
       'username': username,
       'message': message,
-      'image': imageUrl
+      'image': imageUrl,
+      'time': DateTime.now().toIso8601String(),
     };
     socket.emit('message', payload);
   }
@@ -25,7 +40,34 @@ class ChatService {
     socket.emit('typing', {'groupId': groupId, 'username': username, 'typing': isTyping});
   }
 
-  void listenMessages(void Function(dynamic) callback) => socket.on('message', callback);
-  void listenStatus(void Function(dynamic) callback) => socket.on('status', callback);
-  void listenTyping(void Function(dynamic) callback) => socket.on('typing', callback);
+  // Listeners
+  void onChatHistory(void Function(List<dynamic>) callback) {
+    socket.on('chatHistory', (data) {
+      callback(List<dynamic>.from(data));
+    });
+  }
+
+  void onMessage(void Function(Map<String, dynamic>) callback) {
+    socket.on('message', (data) {
+      callback(Map<String, dynamic>.from(data));
+    });
+  }
+
+  void onStatus(void Function(Map<String, dynamic>) callback) {
+    socket.on('status', (data) {
+      callback(Map<String, dynamic>.from(data));
+    });
+  }
+
+  void onTyping(void Function(Map<String, dynamic>) callback) {
+    socket.on('typing', (data) {
+      callback(Map<String, dynamic>.from(data));
+    });
+  }
+
+  void onRoomInfo(void Function(Map<String, dynamic>) callback) {
+    socket.on('roomInfo', (data) {
+      callback(Map<String, dynamic>.from(data));
+    });
+  }
 }

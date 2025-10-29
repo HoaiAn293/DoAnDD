@@ -1,22 +1,54 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
+import 'dart:convert';
 
-Future<String?> uploadImage() async {
+class ServerConfig {
+  static String get baseURL {
+    return 'http://192.168.1.249:3000';
+  }
+
+  static Uri uploadUri() => Uri.parse('$baseURL/upload');
+}
+
+Future<String?> uploadImage({bool fromCamera = true}) async {
   final picker = ImagePicker();
-  final XFile? image = await picker.pickImage(source: ImageSource.camera);
+  final XFile? image = await picker.pickImage(
+    source: fromCamera ? ImageSource.camera : ImageSource.gallery,
+  );
+
   if (image == null) return null;
 
-  var request = http.MultipartRequest('POST', Uri.parse('http://10.0.2.2:3000/upload'));
+  final request = http.MultipartRequest('POST', ServerConfig.uploadUri());
   request.files.add(await http.MultipartFile.fromPath(
-      'image', image.path,
-      contentType: MediaType('image', 'jpeg')));
-  var response = await request.send();
+    'image',
+    image.path,
+    contentType: MediaType('image', 'jpeg'),
+  ));
 
-  if (response.statusCode == 200) {
-    var respStr = await response.stream.bytesToString();
-    return respStr; // url ảnh
+  try {
+    final response = await request.send();
+
+    if (response.statusCode == 200) {
+      final respStr = await response.stream.bytesToString();
+      final data = jsonDecode(respStr);
+
+      String url = data['url'];
+
+      if (url.contains('localhost')) {
+        url = url.replaceFirst(RegExp(r'http://localhost(:\d+)?'), ServerConfig.baseURL);
+      }
+
+      debugPrint('Uploaded image URL: $url');
+      return url;
+    } else {
+      debugPrint('Upload failed with status: ${response.statusCode}');
+    }
+  } catch (e) {
+    debugPrint('Error uploading image: $e');
   }
+
   return null;
 }
